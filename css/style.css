@@ -1,0 +1,349 @@
+/* Global CSS */
+:root {
+    --color-primary: #0478d9;
+    --color-secondary: #fff;
+    --color-accent: #ff3400;
+    --color-gray: #ccc;
+    --color-black: #1e1e1e;
+    --border-radius: 30px;
+  }
+
+  /* Mobile Menu CSS */
+
+  
+  .menu-mobile {
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    z-index: 40;
+    display: flex;
+  }
+
+  @media (min-width: 1024px) {
+    .menu-mobile {
+      display: none;
+    }
+  }
+
+  .mobile-panel {
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    --tw-bg-opacity: 1;
+    background-color: rgb(75 85 99 / var(--tw-bg-opacity));
+    --tw-bg-opacity: 0.75;
+  }
+
+  .mobile-sidebar {
+    position: relative;
+    display: flex;
+    width: 100%;
+    max-width: 20rem;
+    flex: 1 1 0%;
+    flex-direction: column;
+    --tw-bg-opacity: 1;
+    background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+  }
+.close-panel {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    margin-right: -3rem;
+    padding-top: 1rem;
+}
+
+.close-panel {
+    margin-left: 0.25rem;
+    display: flex;
+    height: 2.5rem;
+    width: 2.5rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+
+}
+
+.close-icon {
+    height: 1.5rem;
+    width: 1.5rem;
+}
+
+.mobile-nav {
+    padding-top: 1.25rem;
+    padding-bottom: 1rem;
+}
+  .mobile-logo {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+.sm-logo {
+    height: 2rem;
+    width: auto;
+}
+
+.mobile-menu-items {
+    margin-top: 1.25rem;
+    margin-top: calc(0.25rem * calc(1 - var(--tw-space-y-reverse)));
+    margin-bottom: calc(0.25rem * var(--tw-space-y-reverse));
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+}
+
+.menu-mobile-item {
+    display: flex;
+    align-items: center;
+    border-radius: 0.375rem;
+    padding: 0.5rem;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    font-weight: 500;
+    color: rgb(75 85 99 / var(--tw-text-opacity));
+}
+
+.menu-mobile-item:hover {
+    background-color: rgb(249 250 251 / var(--tw-bg-opacity));
+    color: rgb(17 24 39 / var(--tw-text-opacity));
+}
+
+.menu-mobile-icon {
+    margin-right: 1rem;
+    height: 1.5rem;
+    width: 1.5rem;
+    color: rgb(156 163 175 / var(--tw-text-opacity));
+}
+
+.menu-mobile-icon:hover {
+    color: rgb(107 114 128 / var(--tw-text-opacity));
+}
+
+
+@media (min-width: 1024px) {
+    .mobile-top {
+      display: none;
+    }
+  }
+.mobile-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgb(79 70 229 / var(--tw-bg-opacity));
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+@media (min-width: 640px) {
+    .mobile-header {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .mobile-header {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+
+  .phone-logo {
+    height: 2rem;
+    width: auto;
+  }
+
+  .open-mobile-menu {
+    margin-right: -0.75rem;
+    display: inline-flex;
+    height: 3rem;
+    width: 3rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.375rem;
+    background-color: var(--color-primary);
+    color: var(--color-secondary);
+  }
+  
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+  .open-menu-icon {
+    height: 1.5rem;
+    width: 1.5rem;
+  }
+/* Desktop Menu CSS */
+
+.menu-desktop {
+    display: none;
+    width: 7rem;
+    height: 100vh;
+    overflow-y: auto;
+    --tw-bg-opacity: 1;
+    background-color: var(--color-gray);
+  }
+  @media (min-width: 768px) {
+    .menu-desktop{
+      display: block;
+    }
+  }
+  .menu-sidebar {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    align-items: center;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .logo-desktop {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+  }
+
+  .lg-logo {
+    height: 2rem;
+    width: auto;
+  } 
+
+  .menu-desktop-item {
+    margin-top: 1.5rem;
+    width: 100%;
+    flex: 1 1 0%;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+.menu-items {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 0.375rem;
+    padding: 0.75rem;
+    font-size: 1rem;
+    line-height: 1rem;
+    font-weight: 500;
+    color: var(--color-black);
+}
+
+.menu-items:hover {
+    background-color: var(--color-secondary);
+    color: var(--color-primary);
+}
+
+
+/* Icons */
+
+.icon {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .icon--small {
+    width: 30px;
+    height: 30px;
+  }
+  .icon--menu {
+      width: 50px;
+      height: 50px;
+    }
+  
+  .icon--primary {
+    fill: var(--color-primary);
+  }
+  
+  .icon--white {
+    fill: #fff;
+  }
+  
+  .icon-container {
+    background: #f3f9fa;
+    width: 64px;
+    height: 64px;
+    border-radius: 100%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .icon-container--accent {
+    background: var(--color-accent);
+  }
+
+  /* Start My Brand Main Section */
+.my-brand {
+    display: flex;
+    height: 100%;
+}
+  .main-section {
+    display: flex;
+    flex: 1 1 0%;
+  overflow: hidden;
+  }
+  .main-contents {
+    display: flex;
+    height: 100%;
+    min-width: 0px;
+    flex: 1 1 0%;
+    flex-direction: column;
+    overflow-y: auto;
+  }
+
+    @media (min-width: 1024px) {
+      .main-contents {
+        order: 9999;
+      }
+    }
+
+    .profile-section {
+      display: none;
+    }
+
+        @media (min-width: 1024px) {
+          .profile-section {
+            order: -9999;
+            display: block;
+            flex-shrink: 0;
+            height: 100vh;
+            background-color: #1e1e1e;
+          }
+    
+        }
+
+        .profile-content {
+          position: relative;
+          display: flex;
+          height: 100%;
+          width: 24rem;
+          flex-direction: column;
+          overflow-y: auto;
+          border-right-width: 1px;
+          --tw-border-opacity: 1;
+          border-color: rgb(229 231 235 / var(--tw-border-opacity));
+          --tw-bg-opacity: 1;
+          /* background-color: rgb(255 255 255 / var(--tw-bg-opacity)); */
+        }
+
+        .profile-photo {
+          border-radius: 100%;
+        }
