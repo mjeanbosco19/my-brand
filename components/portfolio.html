@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Jean Bosco Mugiraneza</title>
+    <title>Hi, I am Jean Bosco Mugiraneza</title>
     <link rel="stylesheet" href="/css/app.css" />
     <link rel="stylesheet" href="/css/style.css">
 </head>
@@ -18,38 +18,38 @@
             <div class="mobile-panel">
             </div>
             <div class="mobile-sidebar">
-                <div>
+                <div class="close-panel">
                     <button class="close-panel">
                         <img class="close-icon" src="/icons/close.svg" alt="">
                     </button>
                 </div>
                 <div class="mobile-nav">
-                    <!-- <div class="mobile-logo">
-            <img class="sm-logo" src="#mylogo" alt="mobile-logo">
-          </div> -->
+                    <div class="mobile-logo">
+                        <img class="sm-logo" src="#mylogo" alt="mobile-logo">
+                    </div>
 
                     <div class="mobile-menu-items">
-                        <a href="/index.html" class="menu-mobile-item">
+                        <a href="#" class="menu-mobile-item">
                             <img class="menu-mobile-icon" src="/icons/home.svg" alt="">
                             Home
                         </a>
-                        <a href="/about.html" class="menu-mobile-item">
+                        <a href="#" class="menu-mobile-item">
                             <img class="menu-mobile-icon" src="/icons/user.svg" alt="">
                             About Me
                         </a>
-                        <a href="/resume.html" class="menu-mobile-item">
+                        <a href="#" class="menu-mobile-item">
                             <img class="menu-mobile-icon" src="/icons/award.svg" alt="">
                             Resume
                         </a>
-                        <a href="/portfolio.html" class="menu-mobile-item">
+                        <a href="#" class="menu-mobile-item">
                             <img class="menu-mobile-icon" src="/icons/image.svg" alt="">
                             Portfolio
                         </a>
-                        <a href="/blog.html" class="menu-mobile-item">
+                        <a href="#" class="menu-mobile-item">
                             <img class="menu-mobile-icon" src="/icons/box.svg" alt="">
                             Blog
                         </a>
-                        <a href="/contact.html" class="menu-mobile-item">
+                        <a href="#" class="menu-mobile-item">
                             <img class="menu-mobile-icon" src="/icons/email.svg" alt="">
                             Contact Me
                         </a>
@@ -65,12 +65,13 @@
         <!-- Mobile top navigation -->
         <div class="mobile-top">
             <div class="mobile-header">
-                <!-- <div>
-          <img class="phone-logo" src="#my logo" alt="My Logo">
-        </div> -->
                 <div>
-                    <button type="button" class="open-mobile-menu" onclick="openMenu()">
+                    <img class="phone-logo" src="#my logo" alt="My Logo">
+                </div>
+                <div>
+                    <button type="button" class="open-mobile-menu">
                         <span class="sr-only">Open sidebar</span>
+                        <!-- <img class="open-menu-icon" src="/icons/menu.svg" alt=""> -->
                         <svg class="open-menu-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                             stroke="currentColor" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -84,9 +85,9 @@
         <!-- Desktop Menu -->
         <div class="menu-desktop">
             <div class="menu-sidebar">
-                <!-- <div class="logo-desktop">
-          <img class="lg-logo" src="#mylogo" alt="My Logo" />
-        </div> -->
+                <div class="logo-desktop">
+                    <img class="lg-logo" src="#mylogo" alt="My Logo" />
+                </div>
                 <div class="menu-desktop-items">
                     <a href="/index.html" class="menu-items">
                         <span class="icon-container"><img class="icon--menu icon--primary" src="/icons/home.svg"
@@ -125,12 +126,9 @@
                                 alt="Home" /></span>
                         <span>Contact</span>
                     </a>
-                    <a href="/login.html" class="icon-container login-icon">
-                        <img class="icon--menu icon--primary" src="/icons/lock.svg" alt="">
-                    </a>
+
 
                 </div>
-
             </div>
         </div>
 
@@ -140,41 +138,101 @@
     <main class="main-section">
 
         <section class="main-contents">
+            <h2 class="page-title">My Work</h2>
 
-            <h2 class="page-title">About Me</h2>
-            <div class="prev-next">
-                <a href="/index.html">
-                    <span class="icon-container">
-                        <img class="icon--menu icon--primary" src="/icons/prev.svg" alt="">
-                    </span>
-                </a>
-                <a href="/resume.html">
-                    <span class="icon-container">
-                        <img class="icon--menu icon--primary" src="/icons/next.svg" alt="">
-                    </span>
-                </a>
+            <div class="portfolio">
+                <div>
+                    <h3 class="portfolio-heading">Filter</h3>
+                    <div class="portfolio-filter">
+                        <nav class="filter-items">
 
+                            <a href="#" class="filter-all" aria-current="page"> All </a>
+
+                            <a href="#" class="filter-item">
+                                Popular </a>
+                            <a href="#" class="filter-item">
+                                Latest </a>
+                            <a href="#" class="filter-item">
+                                Others </a>
+                        </nav>
+                    </div>
+                </div>
             </div>
+
+            <ul class="gallery">
+                <li class="relative">
+                    <div class="gallery-item">
+                        <img src="/images/me.jpg" alt="" class="gallery-image">
+
+                    </div>
+
+                </li>
+
+                <li class="relative">
+                    <div class="gallery-item">
+                        <img src="/images/me.jpg" alt="" class="gallery-image">
+
+                    </div>
+
+                </li>
+                <li class="relative">
+                    <div class="gallery-item">
+                        <img src="/images/me.jpg" alt="" class="gallery-image">
+
+                    </div>
+
+                </li>
+
+                <li class="relative">
+                    <div class="gallery-item">
+                        <img src="/images/me.jpg" alt="" class="gallery-image">
+
+                    </div>
+
+                </li>
+                <li class="relative">
+                    <div class="gallery-item">
+                        <img src="/images/me.jpg" alt="" class="gallery-image">
+
+                    </div>
+
+                </li>
+                <li class="relative">
+                    <div class="gallery-item">
+                        <img src="/images/me.jpg" alt="" class="gallery-image">
+
+                    </div>
+
+                </li>
+                <li class="relative">
+                    <div class="gallery-item">
+                        <img src="/images/me.jpg" alt="" class="gallery-image">
+
+                    </div>
+
+                </li>
+
+
+
+                <!-- More images... -->
+            </ul>
+
         </section>
 
         <!-- Profile Section -->
-    <aside class="profile-section">
-        <div class="profile-content">
-            <img class="profile-photo" src="/images/me.jpg" alt="">
-            <h1 class="profile-name">Jean Bosco Mugiraneza</h1>
-            <span class="social-icons">
-                <img class="profile-social" src="/icons/linkedin.svg" alt="">
-                <img class="profile-social" src="/icons/twitter.svg" alt="">
-                <img class="profile-social" src="/icons/github.svg" alt="">
-            </span>
-            <a href="/resume.html"><button class="downloadcv btn btn--primary">Download CV</button></a>
-            <a href="mailto:mjeanbosco19@gmail.com">
-                <button class="sayhello btn btn--secondary">Say Hello 👋 </button>
-            </a>
-            <p class="copyright">© 2022 Alright reserved</p>
-        </div>
-    
-    </aside>
+        <aside class="profile-section">
+            <div class="profile-content">
+                <img class="profile-photo" src="/images/me.jpg" alt="">
+                <h1 class="profile-name">Jean Bosco Mugiraneza</h1>
+                <span class="social-icons">
+                    <img class="profile-social" src="/icons/linkedin.svg" alt="">
+                    <img class="profile-social" src="/icons/twitter.svg" alt="">
+                    <img class="profile-social" src="/icons/github.svg" alt="">
+                </span>
+                <span><button class="downloadcv btn btn--primary">Download CV</button></span>
+                <span><button class="sayhello btn btn--secondary">Say Hello 👋 </button></span>
+            </div>
+        </aside>
     </main>
 </body>
 
