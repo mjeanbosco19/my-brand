@@ -137,12 +137,61 @@
 
     <main class="main-section">
         <!-- Primary column -->
-        <section aria-labelledby="primary-heading" class="main-contents">
-            <h1 id="primary-heading" class="sr-only">Account</h1>
-            <!-- My content -->
-            <div class="myself">
-                <h1 class="my-name">Jean Bosco Mugiraneza</h1>
-                <h2 class="my-career">Software Developer</h2>
+        <section class="main-contents">
+            <h2 class="page-title">Contact Me</h2>
+            <div>
+                <div class="contact">
+                    <div class="contact-item">
+
+                        <span class="icon-container">
+                            <img class="icon--menu icon--primary" src="/icons/location.svg" alt="">
+                        </span>
+                        <p class="contact-info">Kigali-Rwanda</p>
+                    </div>
+                    <div class="contact-item">
+
+                        <span class="icon-container">
+                            <img class="icon--menu icon--primary" src="/icons/email.svg" alt="">
+                        </span>
+                        <p class="contact-info">bosco@etite.org</p>
+                    </div>
+                    <div class="contact-item">
+
+                        <span class="icon-container">
+                            <img class="icon--menu icon--primary" src="/icons/whatsapp.svg" alt="">
+                        </span>
+                        <p class="contact-info">0788 780 375</p>
+                    </div>
+                </div>
+                <div class="reach-me">
+                    <div class="map">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3987.44353068508!2d30.10308881410475!3d-1.9769477373254996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x19dca70506a774cb%3A0xcf2e60af40b8b987!2sETITE%20Ltd%20-%20Technology%20Company!5e0!3m2!1sen!2srw!4v1671756318826!5m2!1sen!2srw"
+                            width="400" height="500" style="border:0;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+                    </div>
+                    <div class="message">
+                        <span for="message" class="message-title">Get in Touch</span>
+                        <div>
+                            <form action="#">
+                                <label for="email"><b>Names</b></label>
+                                <input class="message-input" type="text" id="name" placeholder="Enter Your Name" name="name"
+                                    minlength="4" maxlength="50" required>
+                                <label for="email"><b>Email</b></label>
+                                <input class="message-input" type="text" id="email" placeholder="Enter Email" name="email"
+                                    minlength="4" maxlength="50" required>
+                                <label for="email"><b>Your message</b></label>
+                                <textarea rows="4" name="message" id="message" class="message-input"></textarea>
+                            </form>
+
+                            <button class="btn btn--primary">Send a message</button>
+                        </div>
+
+                    </div>
+
+
+                </div>
             </div>
         </section>
 
