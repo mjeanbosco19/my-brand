@@ -226,6 +226,7 @@
 
 /* Desktop Menu CSS */
 
+
 .menu-desktop {
   display: none;
   width: 7rem;
@@ -1014,4 +1015,31 @@
   border: solid #000 1px;
   border-radius: 0.375rem;
   border-color: rgb(55 65 81);
+}
+
+/* Dashboard */
+.dashboard {
+
+  width: 15rem;
+  height: 100%;
+  overflow-y: auto;
+  --tw-bg-opacity: 1;
+  color: #ccc;
+  background-color: #022745;
+}
+
+.dashboard-item {
+  display: flex;
+  align-items: center;
+  border-radius: 0.375rem;
+  padding: 0.5rem;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  font-weight: 500;
+  color: rgb(207, 211, 216);
+}
+
+.dashboard-item:hover {
+  background-color: rgb(249 250 251 / var(--tw-bg-opacity));
+  color: rgb(17 24 39);
 }
