@@ -2,25 +2,26 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hi 👋, I am Jean Bosco Mugiraneza ☺</title>
-  <link rel="stylesheet" href="/css/app.css" />
-  <link rel="stylesheet" href="/css/style.css">
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hi 👋, I am Jean Bosco Mugiraneza 😊</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 </head>
 
 <body class="my-brand">
-
   <header>
     <!-- Mobile Menu -->
-    <div class="menu-mobile">
+    <div id="mobileMenu" class="menu-mobile">
       <div class="mobile-panel">
       </div>
       <div class="mobile-sidebar">
         <div>
-          <button class="close-panel">
-            <img class="close-icon" src="/icons/close.svg" alt="">
+          <button class="close-panel" onclick="closeMobileMenu()">
+            <img class="close-icon" src="/icons/close.svg" alt="" />
           </button>
         </div>
         <div class="mobile-nav">
@@ -30,34 +31,50 @@
 
           <div class="mobile-menu-items">
             <a href="/index.html" class="menu-mobile-item">
-              <img class="menu-mobile-icon" src="/icons/home.svg" alt="">
+              <img class="menu-mobile-icon" src="/icons/home.svg" alt="" />
               Home
             </a>
             <a href="/about.html" class="menu-mobile-item">
-              <img class="menu-mobile-icon" src="/icons/user.svg" alt="">
+              <img class="menu-mobile-icon" src="/icons/user.svg" alt="" />
               About Me
             </a>
             <a href="/resume.html" class="menu-mobile-item">
-              <img class="menu-mobile-icon" src="/icons/award.svg" alt="">
+              <img class="menu-mobile-icon" src="/icons/award.svg" alt="" />
               Resume
             </a>
             <a href="/portfolio.html" class="menu-mobile-item">
-              <img class="menu-mobile-icon" src="/icons/image.svg" alt="">
+              <img class="menu-mobile-icon" src="/icons/image.svg" alt="" />
               Portfolio
             </a>
             <a href="/blog.html" class="menu-mobile-item">
-              <img class="menu-mobile-icon" src="/icons/box.svg" alt="">
+              <img class="menu-mobile-icon" src="/icons/box.svg" alt="" />
               Blog
             </a>
             <a href="/contact.html" class="menu-mobile-item">
-              <img class="menu-mobile-icon" src="/icons/email.svg" alt="">
+              <img class="menu-mobile-icon" src="/icons/email.svg" alt="" />
               Contact Me
+            </a>
+            <a href="/login.html" class="menu-mobile-item">
+              <img class="menu-mobile-icon" src="/icons/lock.svg" alt="" />
+              Login </a>
+          </div>
+        </div>
+        <aside class="profile-menu">
+          <div class="profile-menu-content">
+            <img class="profile-photo" src="/images/me.jpg" alt="">
+            <h1 class="profile-menu-name">Jean Bosco Mugiraneza</h1>
+            <span class="social-icons">
+              <img class="profile-social" src="/icons/linkedin.svg" alt="">
+              <img class="profile-social" src="/icons/twitter.svg" alt="">
+              <img class="profile-social" src="/icons/github.svg" alt="">
+            </span>
+            <a href="/resume.html"><button class="downloadcv btn btn--primary">Download CV</button></a>
+            <a href="mailto:mjeanbosco19@gmail.com">
+              <button class="sayhello btn btn--secondary">Say Hello 👋</button>
             </a>
           </div>
 
-
-        </div>
-
+        </aside>
       </div>
 
     </div>
@@ -69,7 +86,7 @@
           <img class="phone-logo" src="#my logo" alt="My Logo">
         </div> -->
         <div>
-          <button type="button" class="open-mobile-menu" onclick="openMenu()">
+          <button type="button" class="open-mobile-menu" onclick="openMobileMenu()">
             <span class="sr-only">Open sidebar</span>
             <svg class="open-menu-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
               stroke="currentColor" aria-hidden="true">
@@ -111,24 +128,22 @@
             <span>Portfolio</span>
           </a>
 
-
           <a href="/blog.html" class="menu-items">
             <span class="icon-container"><img class="icon--menu icon--primary" src="/icons/box.svg" alt="Home" /></span>
             <span>Blog</span>
           </a>
-
 
           <a href="/contact.html" class="menu-items">
             <span class="icon-container"><img class="icon--menu icon--primary" src="/icons/email.svg"
                 alt="Home" /></span>
             <span>Contact</span>
           </a>
-          <a href="/login.html" class="icon-container login-icon">
-            <img class="icon--menu icon--primary" src="/icons/lock.svg" alt="">
+          <a href="/login.html" class="menu-items">
+            <span class="icon-container"><img class="icon--menu icon--primary" src="/icons/lock.svg"
+                alt="Home" /></span>
+            <span>Login</span>
           </a>
-
         </div>
-
       </div>
     </div>
 
@@ -136,15 +151,13 @@
   </header>
 
   <main class="main-section">
-
     <section class="main-contents">
-
       <div class="myself">
         <h2 class="my-career">Hello 👋, My name is</h2>
         <h1 class="my-name">Jean Bosco Mugiraneza</h1>
-        
+
         <div class="slider-wrapper">
-          I am 
+          I am
           <div class="slider">
             <div class="slider-text">UI & UX Designer</div>
             <div class="slider-text">Software Developer</div>
@@ -152,41 +165,70 @@
           </div>
         </div>
       </div>
-      
+
       <div class="prev-next">
         <a href="/index.html">
           <span class="icon-container">
-            <img class="icon--menu icon--primary" src="/icons/prev.svg" alt="">
+            <img class="icon--menu icon--primary" src="/icons/prev.svg" alt="" />
           </span>
         </a>
         <a href="/about.html">
           <span class="icon-container">
-            <img class="icon--menu icon--primary" src="/icons/next.svg" alt="">
+            <img class="icon--menu icon--primary" src="/icons/next.svg" alt="" />
           </span>
         </a>
-
       </div>
     </section>
 
     <!-- Profile Section -->
     <aside class="profile-section">
       <div class="profile-content">
-        <img class="profile-photo" src="/images/me.jpg" alt="">
+        <img class="profile-photo" src="/images/me.jpg" alt="" />
         <h1 class="profile-name">Jean Bosco Mugiraneza</h1>
         <span class="social-icons">
-          <img class="profile-social" src="/icons/linkedin.svg" alt="">
-          <img class="profile-social" src="/icons/twitter.svg" alt="">
-          <img class="profile-social" src="/icons/github.svg" alt="">
+          <img class="profile-social" src="/icons/linkedin.svg" alt="" />
+          <img class="profile-social" src="/icons/twitter.svg" alt="" />
+          <img class="profile-social" src="/icons/github.svg" alt="" />
         </span>
         <a href="/resume.html"><button class="downloadcv btn btn--primary">Download CV</button></a>
         <a href="mailto:mjeanbosco19@gmail.com">
-          <button class="sayhello btn btn--secondary">Say Hello 👋 </button>
+          <button class="sayhello btn btn--secondary">Say Hello 👋</button>
         </a>
         <p class="copyright">© 2022 Alright reserved</p>
       </div>
-
     </aside>
   </main>
+  <script src="js/main.js"></script>
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
+
+  <script>
+    (function (w, d, s, u) {
+      w.gbwawc = {
+        url: u,
+        options: {
+          waId: "+250 0733780375",
+          siteName: "Jean Bosco MUGIRANEZA",
+          siteTag: "Online",
+          siteLogo: "https://www.yegogate.com/wp-content/uploads/2022/08/yegogate.png",
+          widgetPosition: "LEFT",
+          triggerMessage: "I always happy to help 😊, Let\'s talk! ",
+          welcomeMessage: "Hi 👋, Nice to meet you 🥰!",
+          brandColor: "#25D366",
+          messageText: "How can I help today?",
+          replyOptions: ['UI &UX Design', 'Website Development', 'Mobile App', 'I\' am just browsing'],
+        },
+      };
+      let h = d.getElementsByTagName(s)[0],
+        j = d.createElement(s);
+      j.async = true;
+      j.src = u + "/whatsapp-widget.min.js?_=" + Math.random();
+      h.parentNode.insertBefore(j, h);
+    })(window, document, "script", "https://waw.gallabox.com");
+  </script>
+
 </body>
 
 </html>

@@ -35,15 +35,15 @@
                             <img class="menu-mobile-icon" src="/icons/user.svg" alt="" />
                             My Blogs
                         </a>
-                        <a href="#" class="menu-mobile-item">
+                        <a href="dashcomments.html" class="menu-mobile-item">
                             <img class="menu-mobile-icon" src="/icons/award.svg" alt="" />
                             Comments
                         </a>
-                        <a href="#" class="menu-mobile-item">
+                        <a href="dashusers.html" class="menu-mobile-item">
                             <img class="menu-mobile-icon" src="/icons/image.svg" alt="" />
                             Users
                         </a>
-                        <a href="#" class="menu-mobile-item">
+                        <a href="dashmessages.html" class="menu-mobile-item">
                             <img class="menu-mobile-icon" src="/icons/box.svg" alt="" />
                             Messages
                         </a>
@@ -201,44 +201,87 @@
                     <div class="dashboard-main">
                         <h1 class="dash-title">Dashboard</h1>
                     </div>
+
+                    <div id="inquiry-grid"> </div>
+
                     <div class="dash-contents">
-                        <!-- my contents -->
-                        <div class="grid grid--1x3">
-                            <div class="contact-item">
+
+
+                        <div class="inquiries grid grid--1x3">
+                            <div class="inquiries" id="inquiries"></div>
+                            <!-- <div class="dashmessage-item">
 
                                 <span class="icon-container">
                                     <img class="icon--menu icon--primary" src="/icons/user.svg" alt="">
                                 </span>
-                                <h2 class="page-title">Users</h2>
-                                <p class="contact-info">500</p>
-                            </div>
-                            <div class="contact-item">
+                                <h2 class="dashmessage-name">User Names</h2>
+                                <p class="dashmessage-email">Email</p>
+                                <p class="dashmessage-info">Message</p>
+                                <span class="blog-icons">
+                                    <img class="blog-icon" src="/icons/favorite.svg" alt="">
 
-                                <span class="icon-container">
-                                    <img class="icon--menu icon--primary" src="/icons/analytics.svg" alt="">
+                                    <img class="blog-icon" src="/icons/delete.svg" alt="">
                                 </span>
-                                <h2 class="page-title">Blogs</h2>
-                                <p class="contact-info">876</p>
-                            </div>
-                            <div class="contact-item">
+                            </div> -->
 
-                                <span class="icon-container">
-                                    <img class="icon--menu icon--primary" src="/icons/comment.svg" alt="">
-                                </span>
-                                <h2 class="page-title">Comments</h2>
-                                <p class="contact-info">375</p>
-                            </div>
                         </div>
 
 
 
-                        <!-- /End  -->
+
                     </div>
                 </div>
             </main>
+
+
         </div>
     </div>
+
+
+
+    <script>
+        function displayInquiries() {
+            let inquiries = JSON.parse(localStorage.getItem("inquiries")) || [];
+            let inquiriesDiv = document.getElementById("inquiries");
+
+            inquiriesDiv.innerHTML = "";
+
+            for (let i = 0; i < inquiries.length; i++) {
+                let inquiry = inquiries[i];
+                let inquiryCard = document.createElement("div");
+                inquiryCard.classList.add("inquiry-card");
+                inquiryCard.innerHTML = `
+            <span class="icon-container">
+              <img class="icon--menu icon--primary" src="/icons/user.svg" alt="">
+            </span>
+        <div class="inquiry-name">${inquiry.name}</div>
+        <div class="inquiry-email">${inquiry.email}</div>
+        <div class="inquiry-message">${inquiry.message}</div>
+        <span class="blog-icons">
+                                    <img class="blog-icon" src="/icons/favorite.svg" alt="">
+
+                                    <img class="blog-icon" src="/icons/delete.svg" alt="" onclick="deleteInquiry(${i})">
+                                </span>
+        
+      `;
+                inquiriesDiv.appendChild(inquiryCard);
+            }
+        }
+
+        function deleteInquiry(index) {
+            let inquiries = JSON.parse(localStorage.getItem("inquiries")) || [];
+            inquiries.splice(index, 1);
+            localStorage.setItem("inquiries", JSON.stringify(inquiries));
+            displayInquiries();
+        }
+
+        displayInquiries();
+    </script>
+
+
+
     <script src="js/main.js"></script>
+    <script src="js/contact.js"></script>
 </body>
 
 </html>

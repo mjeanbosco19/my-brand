@@ -13,6 +13,24 @@
 <body class="my-brand">
 
     <header>
+        <!-- Mobile top navigation -->
+        <div class="mobile-top">
+            <div class="mobile-header">
+                <!-- <div>
+                          <img class="phone-logo" src="#my logo" alt="My Logo">
+                        </div> -->
+                <div>
+                    <button type="button" class="open-mobile-menu" onclick="openMobileMenu()">
+                        <span class="sr-only">Open sidebar</span>
+                        <svg class="open-menu-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
         <!-- Mobile Menu -->
         <div id="mobileMenu" class="menu-mobile">
             <div class="mobile-panel">
@@ -80,24 +98,7 @@
 
         </div>
 
-        <!-- Mobile top navigation -->
-        <div class="mobile-top">
-            <div class="mobile-header">
-                <!-- <div>
-          <img class="phone-logo" src="#my logo" alt="My Logo">
-        </div> -->
-                <div>
-                    <button type="button" class="open-mobile-menu" onclick="openMobileMenu()">
-                        <span class="sr-only">Open sidebar</span>
-                        <svg class="open-menu-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                            stroke="currentColor" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M4 6h16M4 12h16M4 18h16" />
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        </div>
+
 
         <!-- Desktop Menu -->
         <div class="menu-desktop">
@@ -148,6 +149,7 @@
                                 alt="Home" /></span>
                         <span>Login</span>
                     </a>
+
                 </div>
 
             </div>
@@ -155,50 +157,77 @@
 
         <!-- End of Navigation Menu -->
     </header>
-
-    <main class="main-section">
-
-        <section class="main-contents">
-            <h2 class="page-title">My Resume</h2>
-            <div>
-                <embed class="myresume" src="/docs/resume.PDF" width="100%" height="800px" type="application/pdf">
+    <main class="my-login">
+        <div class="login-page">
+            <div class="login-heading">
+                <h2 class="login-title">
+                    Welcome back! 😊
+                </h2>
             </div>
-            <div class="prev-next">
-                <a href="/about.html">
-                    <span class="icon-container">
-                        <img class="icon--menu icon--primary" src="/icons/prev.svg" alt="">
-                    </span>
-                </a>
-                <a href="/portfolio.html">
-                    <span class="icon-container">
-                        <img class="icon--menu icon--primary" src="/icons/next.svg" alt="">
-                    </span>
-                </a>
+            <div class="login-section">
+                <div class="login-form">
+                    <form class="my-form" method="POST" onsubmit="return validateForm()">
+                        <div>
+                            <label for="email" class="form-item"> Email</label>
+                            <div class="login-input">
+                                <input id="email" name="email" type="email" autocomplete="email" class="form-input"
+                                    minlength="4" maxlength="250">
+                            </div>
+                            <div id="email-error" class="error-message"></div>
+                        </div>
+
+                        <div>
+                            <label for="password" class="form-item"> Password </label>
+                            <div class="login-input">
+                                <input id="password" name="password" type="password" autocomplete="current-password"
+                                    class="form-input" minlength="4" maxlength="32">
+
+                            </div>
+                            <div id="password-error" class="error-message"></div>
+
+                        </div>
+
+                        <div class="loginaddons">
+                            <div class="remember">
+                                <input id="remember-me" name="remember-me" type="checkbox" class="remember-input">
+                                <label for="remember-me" class="remember-label">Remember me</label>
+                            </div>
+
+                            <div>
+                                <a href="#" class="forgot">Forgot your
+                                    password?</a>
+                            </div>
+                        </div>
+                        <div>
+                            <a href="dashboard.html"><button type="submit" class="login-button">Login</button></a>
+                        </div>
+                    </form>
+
+
+                    <button type="button" class="login-with-google">
+                        Sign in with Google
+                    </button>
+
+                </div>
+
 
             </div>
-        </section>
-
-        <!-- Profile Section -->
-        <aside class="profile-section">
-            <div class="profile-content">
-                <img class="profile-photo" src="/images/me.jpg" alt="">
-                <h1 class="profile-name">Jean Bosco Mugiraneza</h1>
-                <span class="social-icons">
-                    <img class="profile-social" src="/icons/linkedin.svg" alt="">
-                    <img class="profile-social" src="/icons/twitter.svg" alt="">
-                    <img class="profile-social" src="/icons/github.svg" alt="">
+        </div>
+        <div class="prev-next">
+            <a href="/index.html">
+                <span class="icon-container">
+                    <img class="icon--menu icon--primary" src="/icons/prev.svg" alt="">
                 </span>
-                <a href="/resume.html"><button class="downloadcv btn btn--primary">Download CV</button></a>
-                <a href="mailto:mjeanbosco19@gmail.com">
-                    <button class="sayhello btn btn--secondary">Say Hello 👋 </button>
-                </a>
-                <p class="copyright">© 2022 Alright reserved</p>
-            </div>
+            </a>
+            <a href="/about.html">
+                <span class="icon-container">
+                    <img class="icon--menu icon--primary" src="/icons/next.svg" alt="">
+                </span>
+            </a>
 
-        </aside>
+        </div>
     </main>
     <script src="js/main.js"></script>
-
 
     <script>
         (function (w, d, s, u) {
