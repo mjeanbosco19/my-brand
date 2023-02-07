@@ -13,6 +13,7 @@ router
 router.route('/blog-stats').get(blogController.getBlogStats);
 router.route('/monthly-plan/:year').get(blogController.getMonthlyPlan);
 
+// .get(authController.protect, blogController.getAllBlogs) This Protecting all blog route
 router
   .route('/')
   .get(authController.protect, blogController.getAllBlogs)
