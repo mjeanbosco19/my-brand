@@ -1,102 +1,32 @@
 const Blog = require('./../models/blogModel');
-const APIFeatures = require('../utils/apiFeatures');
-const catchAsync = require('../utils/catchAsync');
-const AppError = require('../utils/appError');
+const catchAsync = require('./../utils/catchAsync');
+const factory = require('./handlerFactory');
+const AppError = require('./../utils/appError');
 
 exports.aliasTopBlogs = (req, res, next) => {
   req.query.limit = '5';
-  req.query.sort = '-ratingsAverage,price';
-  req.query.fields = 'name,price,ratingsAverage,summary,difficulty';
+  req.query.sort = '-likesAverage,price';
+  req.query.fields = 'name,price,likesAverage,summary,difficulty';
   next();
 };
 
-exports.getAllBlogs = catchAsync(async (req, res, next) => {
-  const features = new APIFeatures(Blog.find(), req.query)
-    .filter()
-    .sort()
-    .limitFields()
-    .paginate();
-  const blogs = await features.query;
-
-  // SEND RESPONSE
-  res.status(200).json({
-    status: 'success',
-    results: blogs.length,
-    data: {
-      blogs
-    }
-  });
-});
-
-exports.getBlog = catchAsync(async (req, res, next) => {
-  const blog = await Blog.findById(req.params.id);
-  // Blog.findOne({ _id: req.params.id })
-
-  if (!blog) {
-    return next(new AppError('No blog found with that ID', 404));
-  }
-
-  res.status(200).json({
-    status: 'success',
-    data: {
-      blog
-    }
-  });
-});
-
-exports.createBlog = catchAsync(async (req, res, next) => {
-  const newBlog = await Blog.create(req.body);
-
-  res.status(201).json({
-    status: 'success',
-    data: {
-      blog: newBlog
-    }
-  });
-});
-
-exports.updateBlog = catchAsync(async (req, res, next) => {
-  const blog = await Blog.findByIdAndUpdate(req.params.id, req.body, {
-    new: true,
-    runValidators: true
-  });
-
-  if (!blog) {
-    return next(new AppError('No blog found with that ID', 404));
-  }
-
-  res.status(200).json({
-    status: 'success',
-    data: {
-      blog
-    }
-  });
-});
-
-exports.deleteBlog = catchAsync(async (req, res, next) => {
-  const blog = await Blog.findByIdAndDelete(req.params.id);
-
-  if (!blog) {
-    return next(new AppError('No blog found with that ID', 404));
-  }
-
-  res.status(204).json({
-    status: 'success',
-    data: null
-  });
-});
+exports.getAllBlogs = factory.getAll(Blog);
+exports.getBlog = factory.getOne(Blog, { path: 'comments' });
+exports.createBlog = factory.createOne(Blog);
+exports.updateBlog = factory.updateOne(Blog);
+exports.deleteBlog = factory.deleteOne(Blog);
 
 exports.getBlogStats = catchAsync(async (req, res, next) => {
   const stats = await Blog.aggregate([
     {
-      $match: { ratingsAverage: { $gte: 4.5 } }
+      $match: { likesAverage: { $gte: 4.5 } }
     },
     {
       $group: {
         _id: { $toUpper: '$difficulty' },
         numBlogs: { $sum: 1 },
-        numRatings: { $sum: '$ratingsQuantity' },
-        avgRating: { $avg: '$ratingsAverage' },
+        numLikes: { $sum: '$likesQuantity' },
+        avgLike: { $avg: '$likesAverage' },
         avgPrice: { $avg: '$price' },
         minPrice: { $min: '$price' },
         maxPrice: { $max: '$price' }
@@ -119,7 +49,7 @@ exports.getBlogStats = catchAsync(async (req, res, next) => {
 });
 
 exports.getMonthlyPlan = catchAsync(async (req, res, next) => {
-  const year = req.params.year * 1; // 2023
+  const year = req.params.year * 1; // 2021
 
   const plan = await Blog.aggregate([
     {
@@ -160,6 +90,78 @@ exports.getMonthlyPlan = catchAsync(async (req, res, next) => {
     status: 'success',
     data: {
       plan
+    }
+  });
+});
+
+// /blogs-within/:distance/center/:latlng/unit/:unit
+// /blogs-within/233/center/34.111745,-118.113491/unit/mi
+exports.getBlogsWithin = catchAsync(async (req, res, next) => {
+  const { distance, latlng, unit } = req.params;
+  const [lat, lng] = latlng.split(',');
+
+  const radius = unit === 'mi' ? distance / 3963.2 : distance / 6378.1;
+
+  if (!lat || !lng) {
+    next(
+      new AppError(
+        'Please provide latitutr and longitude in the format lat,lng.',
+        400
+      )
+    );
+  }
+
+  const blogs = await Blog.find({
+    startLocation: { $geoWithin: { $centerSphere: [[lng, lat], radius] } }
+  });
+
+  res.status(200).json({
+    status: 'success',
+    results: blogs.length,
+    data: {
+      data: blogs
+    }
+  });
+});
+
+exports.getDistances = catchAsync(async (req, res, next) => {
+  const { latlng, unit } = req.params;
+  const [lat, lng] = latlng.split(',');
+
+  const multiplier = unit === 'mi' ? 0.000621371 : 0.001;
+
+  if (!lat || !lng) {
+    next(
+      new AppError(
+        'Please provide latitutr and longitude in the format lat,lng.',
+        400
+      )
+    );
+  }
+
+  const distances = await Blog.aggregate([
+    {
+      $geoNear: {
+        near: {
+          type: 'Point',
+          coordinates: [lng * 1, lat * 1]
+        },
+        distanceField: 'distance',
+        distanceMultiplier: multiplier
+      }
+    },
+    {
+      $project: {
+        distance: 1,
+        name: 1
+      }
+    }
+  ]);
+
+  res.status(200).json({
+    status: 'success',
+    data: {
+      data: distances
     }
   });
 });
