@@ -1,7 +1,7 @@
-import User from './../models/userModel';
-import catchAsync from './../utils/catchAsync';
-import AppError from './../utils/appError';
-import { getOne, getAll, updateOne, deleteOne } from './handlerFactory';
+import User from './../models/userModel.js';
+import catchAsync from './../utils/catchAsync.js';
+import AppError from './../utils/appError.js';
+import { getOne, getAll, updateOne, deleteOne } from './handlerFactory.js';
 
 const filterObj = (obj, ...allowedFields) => {
   const newObj = {};

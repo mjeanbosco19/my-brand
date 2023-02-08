@@ -1,13 +1,13 @@
 import { createHash } from 'crypto';
 import { promisify } from 'util';
-import { sign, verify } from 'jsonwebtoken';
-import User from './../models/userModel';
-import catchAsync from './../utils/catchAsync';
-import AppError from './../utils/appError';
-import sendEmail from './../utils/email';
+import jwt from 'jsonwebtoken';
+import User from './../models/userModel.js';
+import catchAsync from './../utils/catchAsync.js';
+import AppError from './../utils/appError.js';
+import sendEmail from './../utils/email.js';
 
 const signToken = id => {
-  return sign({ id }, process.env.JWT_SECRET, {
+  return jwt.sign({ id }, process.env.JWT_SECRET, {
     expiresIn: process.env.JWT_EXPIRES_IN
   });
 };
@@ -82,7 +82,7 @@ export const protect = catchAsync(async (req, res, next) => {
   }
 
   // 2) Verification token
-  const decoded = await promisify(verify)(token, process.env.JWT_SECRET);
+  const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
 
   // 3) Check if user still exists
   const currentUser = await User.findById(decoded.id);

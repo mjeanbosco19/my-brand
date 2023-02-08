@@ -1,9 +1,9 @@
 import { randomBytes, createHash } from 'crypto';
-import { Schema, model } from 'mongoose';
-import { isEmail } from 'validator';
-import { hash, compare } from 'bcryptjs';
-
-const userSchema = new Schema({
+import mongoose from 'mongoose';
+import  validator  from 'validator';
+import bcryptjs from 'bcryptjs';
+const schema = mongoose.Schema;
+const userSchema = new mongoose.Schema({
   name: {
     type: String,
     required: [true, 'Please tell us your name!']
@@ -13,7 +13,7 @@ const userSchema = new Schema({
     required: [true, 'Please provide your email'],
     unique: true,
     lowercase: true,
-    validate: [isEmail, 'Please provide a valid email']
+    validate: [validator.isEmail, 'Please provide a valid email']
   },
   photo: String,
   role: {
@@ -53,7 +53,7 @@ userSchema.pre('save', async function(next) {
   if (!this.isModified('password')) return next();
 
   // Hash the password with cost of 12
-  this.password = await hash(this.password, 12);
+  this.password = await bcryptjs.hash(this.password, 12);
 
   // Delete passwordConfirm field
   this.passwordConfirm = undefined;
@@ -77,7 +77,7 @@ userSchema.methods.correctPassword = async function(
   candidatePassword,
   userPassword
 ) {
-  return await compare(candidatePassword, userPassword);
+   return await bcryptjs.compare(candidatePassword, userPassword);
 };
 
 userSchema.methods.changedPasswordAfter = function(JWTTimestamp) {
@@ -108,6 +108,6 @@ userSchema.methods.createPasswordResetToken = function() {
   return resetToken;
 };
 
-const User = model('User', userSchema);
+const User = mongoose.model('User', userSchema);
 
 export default User;

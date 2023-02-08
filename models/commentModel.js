@@ -1,8 +1,9 @@
 // comment / like / createdAt / ref to blog / ref to user
-import { Schema, model } from 'mongoose';
-import Blog from './blogModel';
+import mongoose from 'mongoose';
+import Blog from './blogModel.js';
 
-const commentSchema = new Schema(
+const schema = mongoose.Schema;
+const commentSchema = new mongoose.Schema(
   {
     comment: {
       type: String,
@@ -18,12 +19,12 @@ const commentSchema = new Schema(
       default: Date.now
     },
     blog: {
-      type: Schema.ObjectId,
+      type: mongoose.Schema.ObjectId,
       ref: 'Blog',
       required: [true, 'Comment must belong to a blog.']
     },
     user: {
-      type: Schema.ObjectId,
+      type: mongoose.Schema.ObjectId,
       ref: 'User',
       required: [true, 'Comment must belong to a user']
     }
@@ -98,6 +99,6 @@ commentSchema.post(/^findOneAnd/, async function() {
   await this.r.constructor.calcAverageLikes(this.r.blog);
 });
 
-const Comment = model('Comment', commentSchema);
+const Comment = mongoose.model('Comment', commentSchema);
 
 export default Comment;

@@ -1,7 +1,7 @@
-import Blog from './../models/blogModel';
-import catchAsync from './../utils/catchAsync';
-import { getAll, getOne, createOne, updateOne, deleteOne } from './handlerFactory';
-import AppError from './../utils/appError';
+import Blog from './../models/blogModel.js';
+import catchAsync from './../utils/catchAsync.js';
+import { getAll, getOne, createOne, updateOne, deleteOne } from './handlerFactory.js';
+import AppError from './../utils/appError.js';
 
 export function aliasTopBlogs(req, res, next) {
   req.query.limit = '5';

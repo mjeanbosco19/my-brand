@@ -1,6 +1,7 @@
 import { Router } from 'express';
-import { getAllComments, setBlogUserIds, createComment, getComment, updateComment, deleteComment } from '../controllers/commentController';
-import { protect, restrictTo } from '../controllers/authController';
+import { getAllComments, setBlogUserIds, createComment, getComment, updateComment, deleteComment } from '../controllers/commentController.js';
+import { protect, restrictTo } from '../controllers/authController.js';
+
 
 const router = Router({ mergeParams: true });
 

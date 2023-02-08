@@ -6,11 +6,11 @@ import mongoSanitize from 'express-mongo-sanitize';
 import xss from 'xss-clean';
 import hpp from 'hpp';
 
-import AppError from './utils/appError';
-import globalErrorHandler from './controllers/errorController';
-import blogRouter from './routes/blogRoutes';
-import userRouter from './routes/userRoutes';
-import commentRouter from './routes/commentRoutes';
+import AppError from './utils/appError.js';
+import globalErrorHandler from './controllers/errorController.js';
+import blogRouter from './routes/blogRoutes.js';
+import userRouter from './routes/userRoutes.js';
+import commentRouter from './routes/commentRoutes.js';
 
 const app = express();
 
@@ -32,7 +32,7 @@ const limiter = rateLimit({
 app.use('/api', limiter);
 
 // Body parser, reading data from body into req.body
-app.use(json({ limit: '10kb' }));
+app.use(express.json({ limit: '10kb' }));
 
 // Data sanitization against NoSQL query injection
 app.use(mongoSanitize());
@@ -48,7 +48,7 @@ app.use(
 );
 
 // Serving static files
-app.use(express.static(`${__dirname}/public`));
+app.use(express.static(`/public`));
 
 // Test middleware
 app.use((req, res, next) => {

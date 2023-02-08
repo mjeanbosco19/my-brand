@@ -1,9 +1,10 @@
-import { Schema, model } from 'mongoose';
+// import { Schema, model } from 'mongoose';
+import mongoose from 'mongoose';
 import slugify from 'slugify';
 // const User = require('./userModel');
 // const validator = require('validator');
-
-const blogSchema = new Schema(
+const schema = mongoose.Schema;
+const blogSchema = new mongoose.Schema(
   {
     name: {
       type: String,
@@ -61,7 +62,7 @@ const blogSchema = new Schema(
 
     guides: [
       {
-        type: Schema.ObjectId,
+        type: schema.ObjectId,
         ref: 'User'
       }
     ]
@@ -135,6 +136,6 @@ blogSchema.post(/^find/, function(docs, next) {
 //   next();
 // });
 
-const Blog = model('Blog', blogSchema);
+const Blog = mongoose.model('Blog', blogSchema);
 
 export default Blog;

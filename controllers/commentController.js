@@ -1,5 +1,5 @@
-import Comment from './../models/commentModel';
-import { getAll, getOne, createOne, updateOne, deleteOne } from './handlerFactory';
+import Comment from './../models/commentModel.js';
+import { getAll, getOne, createOne, updateOne, deleteOne } from './handlerFactory.js';
 // const catchAsync = require('./../utils/catchAsync');
 
 export function setBlogUserIds(req, res, next) {
