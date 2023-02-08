@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const dotenv = require('dotenv');
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
 
 process.on('uncaughtException', err => {
   console.log('UNCAUGHT EXCEPTION! 💥 Shutting down...');
@@ -8,7 +8,7 @@ process.on('uncaughtException', err => {
 });
 
 dotenv.config({ path: './config.env' });
-const app = require('./app');
+import { listen } from './app';
 
 const DB = process.env.DATABASE;
 

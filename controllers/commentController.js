@@ -1,16 +1,16 @@
-const Comment = require('./../models/commentModel');
-const factory = require('./handlerFactory');
+import Comment from './../models/commentModel';
+import { getAll, getOne, createOne, updateOne, deleteOne } from './handlerFactory';
 // const catchAsync = require('./../utils/catchAsync');
 
-exports.setBlogUserIds = (req, res, next) => {
+export function setBlogUserIds(req, res, next) {
   // Allow nested routes
   if (!req.body.blog) req.body.blog = req.params.blogId;
   if (!req.body.user) req.body.user = req.user.id;
   next();
-};
+}
 
-exports.getAllComments = factory.getAll(Comment);
-exports.getComment = factory.getOne(Comment);
-exports.createComment = factory.createOne(Comment);
-exports.updateComment = factory.updateOne(Comment);
-exports.deleteComment = factory.deleteOne(Comment);
+export const getAllComments = getAll(Comment);
+export const getComment = getOne(Comment);
+export const createComment = createOne(Comment);
+export const updateComment = updateOne(Comment);
+export const deleteComment = deleteOne(Comment);

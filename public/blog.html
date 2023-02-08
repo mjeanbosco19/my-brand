@@ -18,15 +18,15 @@
 
 <body>
   <header class="header">
-    <nav class="nav nav--blogs">
-      <a href="/overview.html" class="nav__el">All blogs</a>
+    <nav class="nav nav--tours">
+      <a href="/overview.html" class="nav__el">All tours</a>
       <form class="nav__search">
         <button class="nav__search-btn">
           <svg>
             <use xlink:href="img/icons.svg#icon-search"></use>
           </svg>
         </button>
-        <input type="text" placeholder="Search blogs" class="nav__search-input" />
+        <input type="text" placeholder="Search tours" class="nav__search-input" />
       </form>
     </nav>
     <div class="header__logo">
@@ -86,7 +86,7 @@
             <svg class="overview-box__icon">
               <use xlink:href="img/icons.svg#icon-trending-up"></use>
             </svg>
-            <span class="overview-box__label">Difficulty</span>
+            <span class="overview-box__label">category</span>
             <span class="overview-box__text">Medium</span>
           </div>
           <div class="overview-box__detail">
@@ -100,13 +100,13 @@
             <svg class="overview-box__icon">
               <use xlink:href="img/icons.svg#icon-star"></use>
             </svg>
-            <span class="overview-box__label">Rating</span>
+            <span class="overview-box__label">like</span>
             <span class="overview-box__text">4.9 / 5</span>
           </div>
         </div>
 
         <div class="overview-box__group">
-          <h2 class="heading-secondary ma-bt-lg">Your blog guides</h2>
+          <h2 class="heading-secondary ma-bt-lg">Your tour guides</h2>
 
           <div class="overview-box__detail">
             <img src="img/users/user-19.jpg" alt="Lead guide" class="overview-box__img" />
@@ -128,7 +128,7 @@
     </div>
 
     <div class="description-box">
-      <h2 class="heading-secondary ma-bt-lg">About the park camper blog</h2>
+      <h2 class="heading-secondary ma-bt-lg">About the park camper tour</h2>
       <p class="description__text">
         Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
         eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
@@ -148,282 +148,159 @@
 
   <section class="section-pictures">
     <div class="picture-box">
-      <img class="picture-box__img picture-box__img--1" src="img/blog-5-1.jpg" alt="The Park Camper Tour 1" />
+      <img class="picture-box__img picture-box__img--1" src="img/tour-5-1.jpg" alt="The Park Camper Tour 1" />
     </div>
     <div class="picture-box">
-      <img class="picture-box__img picture-box__img--2" src="img/blog-5-2.jpg" alt="The Park Camper Tour 1" />
+      <img class="picture-box__img picture-box__img--2" src="img/tour-5-2.jpg" alt="The Park Camper Tour 1" />
     </div>
     <div class="picture-box">
-      <img class="picture-box__img picture-box__img--3" src="img/blog-5-3.jpg" alt="The Park Camper Tour 1" />
+      <img class="picture-box__img picture-box__img--3" src="img/tour-5-3.jpg" alt="The Park Camper Tour 1" />
     </div>
   </section>
 
-  <section class="section-map">
-    <div id="map"></div>
-    <script>
-      mapboxgl.accessToken =
-        'pk.eyJ1Ijoiam9uYXNzY2htZWR0bWFubiIsImEiOiJjam54ZmM5N3gwNjAzM3dtZDNxYTVlMnd2In0.ytpI7V7w7cyT1Kq5rT9Z1A';
 
-      const geojson = {
-        type: 'FeatureCollection',
-        features: [
-          {
-            type: 'Feature',
-            geometry: {
-              type: 'Point',
-              coordinates: [-112.987418, 37.198125]
-            },
-            properties: {
-              description: 'Zion Canyon National Park'
-            }
-          },
-          {
-            type: 'Feature',
-            geometry: {
-              type: 'Point',
-              coordinates: [-111.376161, 36.86438]
-            },
-            properties: {
-              description: 'Antelope Canyon'
-            }
-          },
-          {
-            type: 'Feature',
-            geometry: {
-              type: 'Point',
-              coordinates: [-112.115763, 36.058973]
-            },
-            properties: {
-              description: 'Grand Canyon National Park'
-            }
-          },
-          {
-            type: 'Feature',
-            geometry: {
-              type: 'Point',
-              coordinates: [-116.107963, 34.011646]
-            },
-            properties: {
-              description: 'Joshua Tree National Park'
-            }
-          }
-        ]
-      };
 
-      const map = new mapboxgl.Map({
-        container: 'map',
-        style: 'mapbox://styles/jonasschmedtmann/cjnxfn3zk7bj52rpegdltx58h',
-        scrollZoom: false
-      });
-
-      const bounds = new mapboxgl.LngLatBounds();
-
-      geojson.features.forEach(function (marker) {
-        var el = document.createElement('div');
-        el.className = 'marker';
-
-        new mapboxgl.Marker({
-          element: el,
-          anchor: 'bottom'
-        })
-          .setLngLat(marker.geometry.coordinates)
-          .addTo(map);
-
-        new mapboxgl.Popup({
-          offset: 30,
-          closeOnClick: false
-        })
-          .setLngLat(marker.geometry.coordinates)
-          .setHTML('<p>' + marker.properties.description + '</p>')
-          .addTo(map);
-
-        bounds.extend(marker.geometry.coordinates);
-      });
-
-      map.fitBounds(bounds, {
-        padding: {
-          top: 200,
-          bottom: 150,
-          left: 50,
-          right: 50
-        }
-      });
-
-      map.on('load', function () {
-        map.addLayer({
-          id: 'route',
-          type: 'line',
-          source: {
-            type: 'geojson',
-            data: {
-              type: 'Feature',
-              properties: {},
-              geometry: {
-                type: 'LineString',
-                coordinates: [
-                  [-112.987418, 37.198125],
-                  [-111.376161, 36.86438],
-                  [-112.115763, 36.058973],
-                  [-116.107963, 34.011646]
-                ]
-              }
-            }
-          },
-          layout: {
-            'line-join': 'round',
-            'line-cap': 'round'
-          },
-          paint: {
-            'line-color': '#55c57a',
-            'line-opacity': 0.6,
-            'line-width': 3
-          }
-        });
-      });
-    </script>
-  </section>
-
-  <section class="section-reviews">
-    <div class="reviews">
-      <div class="reviews__card">
-        <div class="reviews__avatar">
-          <img src="img/users/user-7.jpg" alt="Jim Brown" class="reviews__avatar-img" />
-          <h6 class="reviews__user">Jim Brown</h6>
+  <section class="section-comments">
+    <div class="comments">
+      <div class="comments__card">
+        <div class="comments__avatar">
+          <img src="img/users/user-7.jpg" alt="Jim Brown" class="comments__avatar-img" />
+          <h6 class="comments__user">Jim Brown</h6>
         </div>
-        <p class="reviews__text">
+        <p class="comments__text">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque
           dignissimos sint quo commodi corrupti accusantium veniam saepe
           numquam.
         </p>
-        <div class="reviews__rating">
-          <svg class="reviews__star reviews__star--active">
+        <div class="comments__like">
+          <svg class="comments__star comments__star--active">
             <use xlink:href="img/icons.svg#icon-star"></use>
           </svg>
-          <svg class="reviews__star reviews__star--active">
+          <svg class="comments__star comments__star--active">
             <use xlink:href="img/icons.svg#icon-star"></use>
           </svg>
-          <svg class="reviews__star reviews__star--active">
+          <svg class="comments__star comments__star--active">
             <use xlink:href="img/icons.svg#icon-star"></use>
           </svg>
-          <svg class="reviews__star reviews__star--active">
+          <svg class="comments__star comments__star--active">
             <use xlink:href="img/icons.svg#icon-star"></use>
           </svg>
-          <svg class="reviews__star reviews__star--active">
+          <svg class="comments__star comments__star--active">
             <use xlink:href="img/icons.svg#icon-star"></use>
           </svg>
         </div>
       </div>
 
-      <div class="reviews__card">
-        <div class="reviews__avatar">
-          <img src="img/users/user-14.jpg" alt="Laura Wilson" class="reviews__avatar-img" />
-          <h6 class="reviews__user">Laura Wilson</h6>
+      <div class="comments__card">
+        <div class="comments__avatar">
+          <img src="img/users/user-14.jpg" alt="Laura Wilson" class="comments__avatar-img" />
+          <h6 class="comments__user">Laura Wilson</h6>
         </div>
-        <p class="reviews__text">
+        <p class="comments__text">
           Veniam adipisci blanditiis, corporis sit magnam aperiam ad, fuga
           reiciendis provident deleniti cumque similique itaque animi,
           sapiente obcaecati beatae accusantium.
         </p>
-        <div class="reviews__rating">
-          <svg class="reviews__star reviews__star--active">
+        <div class="comments__like">
+          <svg class="comments__star comments__star--active">
             <use xlink:href="img/icons.svg#icon-star"></use>
           </svg>
-          <svg class="reviews__star reviews__star--active">
+          <svg class="comments__star comments__star--active">
             <use xlink:href="img/icons.svg#icon-star"></use>
           </svg>
-          <svg class="reviews__star reviews__star--active">
+          <svg class="comments__star comments__star--active">
             <use xlink:href="img/icons.svg#icon-star"></use>
           </svg>
-          <svg class="reviews__star reviews__star--active">
+          <svg class="comments__star comments__star--active">
             <use xlink:href="img/icons.svg#icon-star"></use>
           </svg>
-          <svg class="reviews__star reviews__star--inactive">
+          <svg class="comments__star comments__star--inactive">
             <use xlink:href="img/icons.svg#icon-star"></use>
           </svg>
         </div>
       </div>
 
-      <div class="reviews__card">
-        <div class="reviews__avatar">
-          <img src="img/users/user-15.jpg" alt="Ben Hadley" class="reviews__avatar-img" />
-          <h6 class="reviews__user">Ben Hadley</h6>
+      <div class="comments__card">
+        <div class="comments__avatar">
+          <img src="img/users/user-15.jpg" alt="Ben Hadley" class="comments__avatar-img" />
+          <h6 class="comments__user">Ben Hadley</h6>
         </div>
-        <p class="reviews__text">
+        <p class="comments__text">
           Debitis, nesciunt itaque! At quis officia natus. Suscipit,
           reprehenderit blanditiis mollitia distinctio ducimus porro tempore
           perspiciatis sunt vel.
         </p>
-        <div class="reviews__rating">
-          <svg class="reviews__star reviews__star--active">
+        <div class="comments__like">
+          <svg class="comments__star comments__star--active">
             <use xlink:href="img/icons.svg#icon-star"></use>
           </svg>
-          <svg class="reviews__star reviews__star--active">
+          <svg class="comments__star comments__star--active">
             <use xlink:href="img/icons.svg#icon-star"></use>
           </svg>
-          <svg class="reviews__star reviews__star--active">
+          <svg class="comments__star comments__star--active">
             <use xlink:href="img/icons.svg#icon-star"></use>
           </svg>
-          <svg class="reviews__star reviews__star--active">
+          <svg class="comments__star comments__star--active">
             <use xlink:href="img/icons.svg#icon-star"></use>
           </svg>
-          <svg class="reviews__star reviews__star--active">
+          <svg class="comments__star comments__star--active">
             <use xlink:href="img/icons.svg#icon-star"></use>
           </svg>
         </div>
       </div>
 
-      <div class="reviews__card">
-        <div class="reviews__avatar">
-          <img src="img/users/user-6.jpg" alt="Alexander Jones" class="reviews__avatar-img" />
-          <h6 class="reviews__user">Alexander Jones</h6>
+      <div class="comments__card">
+        <div class="comments__avatar">
+          <img src="img/users/user-6.jpg" alt="Alexander Jones" class="comments__avatar-img" />
+          <h6 class="comments__user">Alexander Jones</h6>
         </div>
-        <p class="reviews__text">
+        <p class="comments__text">
           Quaerat laborum eveniet ut aut maiores doloribus mollitia aperiam
           quis praesentium sed inventore harum aliquam veritatis at adipisci
           ea assumenda!
         </p>
-        <div class="reviews__rating">
-          <svg class="reviews__star reviews__star--active">
+        <div class="comments__like">
+          <svg class="comments__star comments__star--active">
             <use xlink:href="img/icons.svg#icon-star"></use>
           </svg>
-          <svg class="reviews__star reviews__star--active">
+          <svg class="comments__star comments__star--active">
             <use xlink:href="img/icons.svg#icon-star"></use>
           </svg>
-          <svg class="reviews__star reviews__star--active">
+          <svg class="comments__star comments__star--active">
             <use xlink:href="img/icons.svg#icon-star"></use>
           </svg>
-          <svg class="reviews__star reviews__star--active">
+          <svg class="comments__star comments__star--active">
             <use xlink:href="img/icons.svg#icon-star"></use>
           </svg>
-          <svg class="reviews__star reviews__star--active">
+          <svg class="comments__star comments__star--active">
             <use xlink:href="img/icons.svg#icon-star"></use>
           </svg>
         </div>
       </div>
 
-      <div class="reviews__card">
-        <div class="reviews__avatar">
-          <img src="img/users/user-3.jpg" alt="Ayla Cornell" class="reviews__avatar-img" />
-          <h6 class="reviews__user">Ayla Cornell</h6>
+      <div class="comments__card">
+        <div class="comments__avatar">
+          <img src="img/users/user-3.jpg" alt="Ayla Cornell" class="comments__avatar-img" />
+          <h6 class="comments__user">Ayla Cornell</h6>
         </div>
-        <p class="reviews__text">
+        <p class="comments__text">
           Perferendis quo aliquid iste quas laboriosam molestias illo est
           voluptatem odit ea. Vero placeat culpa provident dicta maiores!
         </p>
-        <div class="reviews__rating">
-          <svg class="reviews__star reviews__star--active">
+        <div class="comments__like">
+          <svg class="comments__star comments__star--active">
             <use xlink:href="img/icons.svg#icon-star"></use>
           </svg>
-          <svg class="reviews__star reviews__star--active">
+          <svg class="comments__star comments__star--active">
             <use xlink:href="img/icons.svg#icon-star"></use>
           </svg>
-          <svg class="reviews__star reviews__star--active">
+          <svg class="comments__star comments__star--active">
             <use xlink:href="img/icons.svg#icon-star"></use>
           </svg>
-          <svg class="reviews__star reviews__star--active">
+          <svg class="comments__star comments__star--active">
             <use xlink:href="img/icons.svg#icon-star"></use>
           </svg>
-          <svg class="reviews__star reviews__star--active">
+          <svg class="comments__star comments__star--active">
             <use xlink:href="img/icons.svg#icon-star"></use>
           </svg>
         </div>
@@ -436,15 +313,15 @@
       <div class="cta__img cta__img--logo">
         <img src="img/logo-white.png" alt="mybrand logo" class="" />
       </div>
-      <img src="img/blog-5-2.jpg" alt="" class="cta__img cta__img--1" />
-      <img src="img/blog-5-1.jpg" alt="" class="cta__img cta__img--2" />
+      <img src="img/tour-5-2.jpg" alt="" class="cta__img cta__img--1" />
+      <img src="img/tour-5-1.jpg" alt="" class="cta__img cta__img--2" />
 
       <div class="cta__content">
         <h2 class="heading-secondary">What are you waiting for?</h2>
         <p class="cta__text">
           10 days. 1 adventure. Infinite memories. Make it yours today!
         </p>
-        <button class="btn btn--green span-all-rows">Book blog now!</button>
+        <button class="btn btn--green span-all-rows">Book tour now!</button>
       </div>
     </div>
   </section>

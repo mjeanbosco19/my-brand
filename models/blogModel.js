@@ -1,9 +1,9 @@
-const mongoose = require('mongoose');
-const slugify = require('slugify');
+import { Schema, model } from 'mongoose';
+import slugify from 'slugify';
 // const User = require('./userModel');
 // const validator = require('validator');
 
-const blogSchema = new mongoose.Schema(
+const blogSchema = new Schema(
   {
     name: {
       type: String,
@@ -15,46 +15,24 @@ const blogSchema = new mongoose.Schema(
       // validate: [validator.isAlpha, 'blog name must only contain characters']
     },
     slug: String,
-    duration: {
-      type: Number,
-      required: [true, 'A blog must have a duration']
-    },
-    maxGroupSize: {
-      type: Number,
-      required: [true, 'A blog must have a group size']
-    },
-    difficulty: {
+    category: {
       type: String,
-      required: [true, 'A blog must have a difficulty'],
+      required: [true, 'A blog must have a category'],
       enum: {
         values: ['easy', 'medium', 'difficult'],
-        message: 'Difficulty is either: easy, medium, difficult'
+        message: 'category is either: easy, medium, difficult'
       }
     },
-    ratingsAverage: {
+    likesAverage: {
       type: Number,
       default: 4.5,
-      min: [1, 'Rating must be above 1.0'],
-      max: [5, 'Rating must be below 5.0'],
+      min: [1, 'Like must be above 1.0'],
+      max: [5, 'Like must be below 5.0'],
       set: val => Math.round(val * 10) / 10 // 4.666666, 46.6666, 47, 4.7
     },
-    ratingsQuantity: {
+    likesQuantity: {
       type: Number,
       default: 0
-    },
-    price: {
-      type: Number,
-      required: [true, 'A blog must have a price']
-    },
-    priceDiscount: {
-      type: Number,
-      validate: {
-        validator: function(val) {
-          // this only points to current doc on NEW document creation
-          return val < this.price;
-        },
-        message: 'Discount price ({VALUE}) should be below regular price'
-      }
     },
     summary: {
       type: String,
@@ -80,33 +58,10 @@ const blogSchema = new mongoose.Schema(
       type: Boolean,
       default: false
     },
-    startLocation: {
-      // GeoJSON
-      type: {
-        type: String,
-        default: 'Point',
-        enum: ['Point']
-      },
-      coordinates: [Number],
-      address: String,
-      description: String
-    },
-    locations: [
-      {
-        type: {
-          type: String,
-          default: 'Point',
-          enum: ['Point']
-        },
-        coordinates: [Number],
-        address: String,
-        description: String,
-        day: Number
-      }
-    ],
+
     guides: [
       {
-        type: mongoose.Schema.ObjectId,
+        type: Schema.ObjectId,
         ref: 'User'
       }
     ]
@@ -117,14 +72,8 @@ const blogSchema = new mongoose.Schema(
   }
 );
 
-// blogSchema.index({ price: 1 });
-blogSchema.index({ price: 1, ratingsAverage: -1 });
+blogSchema.index({ likesAverage: -1 });
 blogSchema.index({ slug: 1 });
-blogSchema.index({ startLocation: '2dsphere' });
-
-blogSchema.virtual('durationWeeks').get(function() {
-  return this.duration / 7;
-});
 
 // Virtual populate
 blogSchema.virtual('comments', {
@@ -186,6 +135,6 @@ blogSchema.post(/^find/, function(docs, next) {
 //   next();
 // });
 
-const Blog = mongoose.model('Blog', blogSchema);
+const Blog = model('Blog', blogSchema);
 
-module.exports = Blog;
+export default Blog;

@@ -1,30 +1,30 @@
-const express = require('express');
-const commentController = require('../controllers/commentController');
-const authController = require('../controllers/authController');
+import { Router } from 'express';
+import { getAllComments, setBlogUserIds, createComment, getComment, updateComment, deleteComment } from '../controllers/commentController';
+import { protect, restrictTo } from '../controllers/authController';
 
-const router = express.Router({ mergeParams: true });
+const router = Router({ mergeParams: true });
 
-router.use(authController.protect);
+router.use(protect);
 
 router
   .route('/')
-  .get(commentController.getAllComments)
+  .get(getAllComments)
   .post(
-    authController.restrictTo('user'),
-    commentController.setBlogUserIds,
-    commentController.createComment
+    restrictTo('user'),
+    setBlogUserIds,
+    createComment
   );
 
 router
   .route('/:id')
-  .get(commentController.getComment)
+  .get(getComment)
   .patch(
-    authController.restrictTo('user', 'admin'),
-    commentController.updateComment
+    restrictTo('user', 'admin'),
+    updateComment
   )
   .delete(
-    authController.restrictTo('user', 'admin'),
-    commentController.deleteComment
+    restrictTo('user', 'admin'),
+    deleteComment
   );
 
-module.exports = router;
+export default router;

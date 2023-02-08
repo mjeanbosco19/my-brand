@@ -1,9 +1,9 @@
-const express = require('express');
-const blogController = require('./../controllers/blogController');
-const authController = require('./../controllers/authController');
-const commentRouter = require('./../routes/commentRoutes');
+import { Router } from 'express';
+import { aliasTopBlogs, getAllBlogs, getBlogStats, createBlog, getBlog, updateBlog, deleteBlog } from './../controllers/blogController';
+import { protect, restrictTo } from './../controllers/authController';
+import commentRouter from './../routes/commentRoutes';
 
-const router = express.Router();
+const router = Router();
 
 // router.param('id', blogController.checkID);
 
@@ -14,46 +14,33 @@ router.use('/:blogId/comments', commentRouter);
 
 router
   .route('/top-5-cheap')
-  .get(blogController.aliasTopBlogs, blogController.getAllBlogs);
+  .get(aliasTopBlogs, getAllBlogs);
 
-router.route('/blog-stats').get(blogController.getBlogStats);
-router
-  .route('/monthly-plan/:year')
-  .get(
-    authController.protect,
-    authController.restrictTo('admin', 'lead-guide', 'guide'),
-    blogController.getMonthlyPlan
-  );
+router.route('/blog-stats').get(getBlogStats);
 
-router
-  .route('/blogs-within/:distance/center/:latlng/unit/:unit')
-  .get(blogController.getBlogsWithin);
-// /blogs-within?distance=233&center=-40,45&unit=mi
-// /blogs-within/233/center/-40,45/unit/mi
 
-router.route('/distances/:latlng/unit/:unit').get(blogController.getDistances);
 
 router
   .route('/')
-  .get(blogController.getAllBlogs)
+  .get(getAllBlogs)
   .post(
-    authController.protect,
-    authController.restrictTo('admin', 'lead-guide'),
-    blogController.createBlog
+    protect,
+    restrictTo('admin', 'lead-guide'),
+    createBlog
   );
 
 router
   .route('/:id')
-  .get(blogController.getBlog)
+  .get(getBlog)
   .patch(
-    authController.protect,
-    authController.restrictTo('admin', 'lead-guide'),
-    blogController.updateBlog
+    protect,
+    restrictTo('admin', 'lead-guide'),
+    updateBlog
   )
   .delete(
-    authController.protect,
-    authController.restrictTo('admin', 'lead-guide'),
-    blogController.deleteBlog
+    protect,
+    restrictTo('admin', 'lead-guide'),
+    deleteBlog
   );
 
-module.exports = router;
+export default router;

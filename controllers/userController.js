@@ -1,7 +1,7 @@
-const User = require('./../models/userModel');
-const catchAsync = require('./../utils/catchAsync');
-const AppError = require('./../utils/appError');
-const factory = require('./handlerFactory');
+import User from './../models/userModel';
+import catchAsync from './../utils/catchAsync';
+import AppError from './../utils/appError';
+import { getOne, getAll, updateOne, deleteOne } from './handlerFactory';
 
 const filterObj = (obj, ...allowedFields) => {
   const newObj = {};
@@ -11,12 +11,12 @@ const filterObj = (obj, ...allowedFields) => {
   return newObj;
 };
 
-exports.getMe = (req, res, next) => {
+export function getMe(req, res, next) {
   req.params.id = req.user.id;
   next();
-};
+}
 
-exports.updateMe = catchAsync(async (req, res, next) => {
+export const updateMe = catchAsync(async (req, res, next) => {
   // 1) Create error if user POSTs password data
   if (req.body.password || req.body.passwordConfirm) {
     return next(
@@ -44,7 +44,7 @@ exports.updateMe = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.deleteMe = catchAsync(async (req, res, next) => {
+export const deleteMe = catchAsync(async (req, res, next) => {
   await User.findByIdAndUpdate(req.user.id, { active: false });
 
   res.status(204).json({
@@ -53,16 +53,15 @@ exports.deleteMe = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.createUser = (req, res) => {
+export function createUser(req, res) {
   res.status(500).json({
     status: 'error',
     message: 'This route is not defined! Please use /signup instead'
   });
-};
+}
 
-exports.getUser = factory.getOne(User);
-exports.getAllUsers = factory.getAll(User);
+export const getUser = getOne(User);
+export const getAllUsers = getAll(User);
 
-// Do NOT update passwords with this!
-exports.updateUser = factory.updateOne(User);
-exports.deleteUser = factory.deleteOne(User);
+export const updateUser = updateOne(User);
+export const deleteUser = deleteOne(User);

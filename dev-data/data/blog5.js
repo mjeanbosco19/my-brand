@@ -2,14 +2,10 @@
 const blog5 = {
   id: 5,
   name: 'The Sports Lover',
-  startLocation: 'California, USA',
   nextStartDate: 'July 2023',
-  duration: 14,
-  maxGroupSize: 8,
-  difficulty: 'difficult',
-  avgRating: 4.7,
-  numReviews: 23,
-  regPrice: 2997,
+  category: 'difficult',
+  avgLike: 4.7,
+  numComments: 23,
   shortDescription:
     'Surfing, skating, parajumping, rock climbing and more, all in one blog',
   longDescription:

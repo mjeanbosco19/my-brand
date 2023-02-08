@@ -1,8 +1,8 @@
-// comment / rating / createdAt / ref to blog / ref to user
-const mongoose = require('mongoose');
-const Blog = require('./blogModel');
+// comment / like / createdAt / ref to blog / ref to user
+import { Schema, model } from 'mongoose';
+import Blog from './blogModel';
 
-const commentSchema = new mongoose.Schema(
+const commentSchema = new Schema(
   {
     comment: {
       type: String,
@@ -18,12 +18,12 @@ const commentSchema = new mongoose.Schema(
       default: Date.now
     },
     blog: {
-      type: mongoose.Schema.ObjectId,
+      type: Schema.ObjectId,
       ref: 'Blog',
       required: [true, 'Comment must belong to a blog.']
     },
     user: {
-      type: mongoose.Schema.ObjectId,
+      type: Schema.ObjectId,
       ref: 'User',
       required: [true, 'Comment must belong to a user']
     }
@@ -82,7 +82,7 @@ commentSchema.statics.calcAverageLikes = async function(blogId) {
 
 commentSchema.post('save', function() {
   // this points to current comment
-  this.constructor.calcAverageRatings(this.blog);
+  this.constructor.calcAverageLikes(this.blog);
 });
 
 // findByIdAndUpdate
@@ -95,9 +95,9 @@ commentSchema.pre(/^findOneAnd/, async function(next) {
 
 commentSchema.post(/^findOneAnd/, async function() {
   // await this.findOne(); does NOT work here, query has already executed
-  await this.r.constructor.calcAverageRatings(this.r.blog);
+  await this.r.constructor.calcAverageLikes(this.r.blog);
 });
 
-const Comment = mongoose.model('Comment', commentSchema);
+const Comment = model('Comment', commentSchema);
 
-module.exports = Comment;
+export default Comment;

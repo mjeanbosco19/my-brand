@@ -1,16 +1,16 @@
-const express = require('express');
-const morgan = require('morgan');
-const rateLimit = require('express-rate-limit');
-const helmet = require('helmet');
-const mongoSanitize = require('express-mongo-sanitize');
-const xss = require('xss-clean');
-const hpp = require('hpp');
+import express from 'express';
+import morgan from 'morgan';
+import rateLimit from 'express-rate-limit';
+import helmet from 'helmet';
+import mongoSanitize from 'express-mongo-sanitize';
+import xss from 'xss-clean';
+import hpp from 'hpp';
 
-const AppError = require('./utils/appError');
-const globalErrorHandler = require('./controllers/errorController');
-const blogRouter = require('./routes/blogRoutes');
-const userRouter = require('./routes/userRoutes');
-const commentRouter = require('./routes/commentRoutes');
+import AppError from './utils/appError';
+import globalErrorHandler from './controllers/errorController';
+import blogRouter from './routes/blogRoutes';
+import userRouter from './routes/userRoutes';
+import commentRouter from './routes/commentRoutes';
 
 const app = express();
 
@@ -32,7 +32,7 @@ const limiter = rateLimit({
 app.use('/api', limiter);
 
 // Body parser, reading data from body into req.body
-app.use(express.json({ limit: '10kb' }));
+app.use(json({ limit: '10kb' }));
 
 // Data sanitization against NoSQL query injection
 app.use(mongoSanitize());
@@ -43,14 +43,7 @@ app.use(xss());
 // Prevent parameter pollution
 app.use(
   hpp({
-    whitelist: [
-      'duration',
-      'ratingsQuantity',
-      'ratingsAverage',
-      'maxGroupSize',
-      'difficulty',
-      'price'
-    ]
+    whitelist: ['likesQuantity', 'likesAverage', 'category']
   })
 );
 
@@ -75,4 +68,4 @@ app.all('*', (req, res, next) => {
 
 app.use(globalErrorHandler);
 
-module.exports = app;
+export default app;

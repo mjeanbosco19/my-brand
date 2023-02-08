@@ -1,5 +1,6 @@
 {
   "name": "mybrand",
+  "type": "module",
   "version": "1.0.0",
   "description": "Learning node, express and mongoDB",
   "main": "app.js",
