@@ -2,7 +2,7 @@
   {
     "id": 0,
     "name": "The Forest Hiker",
-    "category": "easy",
+    "category": "news",
     "likesAverage": 4.7,
     "likesQuantity": 37,
     "summary": "Breathtaking hike through the Canadian Banff National Park",
@@ -14,7 +14,7 @@
   {
     "id": 1,
     "name": "The Sea Explorer",
-    "category": "medium",
+    "category": "tech",
     "likesAverage": 4.8,
     "likesQuantity": 23,
     "summary": "Exploring the jaw-dropping US east coast by foot and by boat",
@@ -26,7 +26,7 @@
   {
     "id": 2,
     "name": "The Snow Adventurer",
-    "category": "difficult",
+    "category": "others",
     "likesAverage": 4.5,
     "likesQuantity": 13,
     "summary": "Exciting adventure in the snow with snowboarding and skiing",
@@ -38,7 +38,7 @@
   {
     "id": 3,
     "name": "The City Wanderer",
-    "category": "easy",
+    "category": "news",
     "likesAverage": 4.6,
     "likesQuantity": 54,
     "summary": "Living the life of Wanderlust in the US' most beatiful cities",
@@ -50,7 +50,7 @@
   {
     "id": 4,
     "name": "The Park Camper",
-    "category": "medium",
+    "category": "tech",
     "likesAverage": 4.9,
     "likesQuantity": 19,
     "summary": "Breathing in Nature in America's most spectacular National Parks",
@@ -62,7 +62,7 @@
   {
     "id": 5,
     "name": "The Sports Lover",
-    "category": "difficult",
+    "category": "others",
     "likesAverage": 4.7,
     "likesQuantity": 28,
     "summary": "Surfing, skating, parajumping, rock climbing and more, all in one tour",
@@ -74,7 +74,7 @@
   {
     "id": 6,
     "name": "The Wine Taster",
-    "category": "easy",
+    "category": "news",
     "likesAverage": 4.5,
     "likesQuantity": 35,
     "summary": "Exquisite wines, scenic views, exclusive barrel tastings,  and much more",
@@ -86,7 +86,7 @@
   {
     "id": 7,
     "name": "The Star Gazer",
-    "category": "medium",
+    "category": "tech",
     "likesAverage": 4.7,
     "likesQuantity": 28,
     "summary": "The most remote and stunningly beautiful places for seeing the night sky",
@@ -98,7 +98,7 @@
   {
     "id": 8,
     "name": "The Northern Lights",
-    "category": "easy",
+    "category": "news",
     "likesAverage": 4.9,
     "likesQuantity": 33,
     "summary": "Enjoy the Northern Lights in one of the best places in the world",

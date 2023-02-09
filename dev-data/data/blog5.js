@@ -3,7 +3,7 @@ const blog5 = {
   id: 5,
   name: 'The Sports Lover',
   nextStartDate: 'July 2023',
-  category: 'difficult',
+  category: 'others',
   avgLike: 4.7,
   numComments: 23,
   shortDescription:

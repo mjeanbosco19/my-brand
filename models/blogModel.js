@@ -20,8 +20,8 @@ const blogSchema = new mongoose.Schema(
       type: String,
       required: [true, 'A blog must have a category'],
       enum: {
-        values: ['easy', 'medium', 'difficult'],
-        message: 'category is either: easy, medium, difficult'
+        values: ['news', 'tech', 'others'],
+        message: 'category is either: news, tech, others'
       }
     },
     likesAverage: {
@@ -131,7 +131,6 @@ blogSchema.post(/^find/, function(docs, next) {
 // AGGREGATION MIDDLEWARE
 // blogSchema.pre('aggregate', function(next) {
 //   this.pipeline().unshift({ $match: { secretBlog: { $ne: true } } });
-
 //   console.log(this.pipeline());
 //   next();
 // });

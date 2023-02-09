@@ -1,7 +1,9 @@
 import { Router } from 'express';
+import multer from 'multer';
 import { updateMe, deleteMe, getAllUsers, createUser, getUser, updateUser, deleteUser } from './../controllers/userController.js';
 import { signup, login, forgotPassword, resetPassword, protect, updatePassword } from './../controllers/authController.js';
 
+const upload = multer({dest:'public/img/users'});
 const router = Router();
 
 router.post('/signup', signup);
@@ -16,7 +18,7 @@ router.patch(
   updatePassword
 );
 
-router.patch('/updateMe', protect, updateMe);
+router.patch('/updateMe', upload.single('photo'), protect, updateMe);
 router.delete('/deleteMe', protect, deleteMe);
 
 router

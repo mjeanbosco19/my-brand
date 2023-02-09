@@ -1,6 +1,6 @@
 import { randomBytes, createHash } from 'crypto';
 import mongoose from 'mongoose';
-import  validator  from 'validator';
+import validator from 'validator';
 import bcryptjs from 'bcryptjs';
 const schema = mongoose.Schema;
 const userSchema = new mongoose.Schema({
@@ -19,7 +19,7 @@ const userSchema = new mongoose.Schema({
   role: {
     type: String,
     enum: ['user', 'guide', 'lead-guide', 'admin'],
-    default: 'user'
+     default: 'user'
   },
   password: {
     type: String,
@@ -77,7 +77,7 @@ userSchema.methods.correctPassword = async function(
   candidatePassword,
   userPassword
 ) {
-   return await bcryptjs.compare(candidatePassword, userPassword);
+  return await bcryptjs.compare(candidatePassword, userPassword);
 };
 
 userSchema.methods.changedPasswordAfter = function(JWTTimestamp) {
