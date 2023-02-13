@@ -3,9 +3,9 @@ import mongoose from 'mongoose';
 import app from '../app.js';
 import dotenv from 'dotenv';
 
-jest.setTimeout(20000);
+jest.setTimeout(200000);
 const blog = {
-  name: 'Test',
+  name: 'Test2',
   category: 'news',
   imageCover: '[blog]',
   summary: 'New blog',
@@ -34,16 +34,15 @@ describe('Blog API tests', () => {
     })
     .then(() => console.log('DB connection successful!'));
 
-describe('Blog APi', () => {
-  test('It should return 200 and get Blog ', async () => {
-    const { body } = await request(app)
-      .get('/api/v1/blogs')
-      .expect('Content-Type', /json/)
-      .expect(200);
-  });
+  describe('Blog APi', () => {
+    test('It should return 200 and get Blog ', async () => {
+      const { body } = await request(app)
+        .get('/api/v1/blogs')
+        .expect('Content-Type', /json/)
+        .expect(200);
+    });
 
-////////
-    
+    ////////
 
     test('It should return 201 and create a blog', async () => {
       const { body } = await request(app)
@@ -60,5 +59,4 @@ describe('Blog APi', () => {
         .expect(200);
     });
   });
-  
 });

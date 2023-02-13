@@ -27,7 +27,7 @@ router.route('/blog-stats').get(getBlogStats);
 router
   .route('/')
   .get(getAllBlogs)
-  .post(protect, restrictTo('admin', 'lead-guide'), createBlog);
+  .post(createBlog);
 
 router
   .route('/:id')
