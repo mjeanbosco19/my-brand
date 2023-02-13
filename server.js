@@ -13,13 +13,13 @@ import app from './app.js';
 
 const DB = process.env.DATABASE;
 //  'mongodb://localhost:27017' ||
-   mongoose
-     .connect(DB, {
-       useNewUrlParser: true,
-       useCreateIndex: true,
-       useFindAndModify: false
-     })
-     .then(() => console.log('DB connection successful!'));
+mongoose
+  .connect(DB, {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useFindAndModify: false
+  })
+  .then(() => console.log('DB connection successful!'));
 
 const port = process.env.PORT || 3000;
 const server = app.listen(port, () => {

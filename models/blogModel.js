@@ -89,21 +89,7 @@ blogSchema.pre('save', function(next) {
   next();
 });
 
-// blogSchema.pre('save', async function(next) {
-//   const guidesPromises = this.guides.map(async id => await User.findById(id));
-//   this.guides = await Promise.all(guidesPromises);
-//   next();
-// });
 
-// blogSchema.pre('save', function(next) {
-//   console.log('Will save document...');
-//   next();
-// });
-
-// blogSchema.post('save', function(doc, next) {
-//   console.log(doc);
-//   next();
-// });
 
 // QUERY MIDDLEWARE
 // blogSchema.pre('find', function(next) {

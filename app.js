@@ -7,7 +7,7 @@ import xss from 'xss-clean';
 import hpp from 'hpp';
 
 import AppError from './utils/appError.js';
-import globalErrorHandler from './controllers/errorController.js';
+// import globalErrorHandler from './controllers/errorController.js';
 import blogRouter from './routes/blogRoutes.js';
 import userRouter from './routes/userRoutes.js';
 import commentRouter from './routes/commentRoutes.js';
@@ -16,7 +16,7 @@ const app = express();
 
 // 1) GLOBAL MIDDLEWARES
 // Set security HTTP headers
-app.use(helmet());
+// app.use(helmet());
 
 // Development logging
 if (process.env.NODE_ENV === 'development') {
@@ -29,23 +29,23 @@ const limiter = rateLimit({
   windowMs: 60 * 60 * 1000,
   message: 'Too many requests from this IP, please try again in an hour!'
 });
-app.use('/api', limiter);
+// app.use('/api', limiter);
 
 // Body parser, reading data from body into req.body
-app.use(express.json({ limit: '10kb' }));
+app.use(express.json());
 
 // Data sanitization against NoSQL query injection
-app.use(mongoSanitize());
+// app.use(mongoSanitize());
 
 // Data sanitization against XSS
-app.use(xss());
+// app.use(xss());
 
 // Prevent parameter pollution
-app.use(
-  hpp({
-    whitelist: ['likesQuantity', 'likesAverage', 'category']
-  })
-);
+// app.use(
+//   hpp({
+//     whitelist: ['likesQuantity', 'likesAverage', 'category']
+//   })
+// );
 
 // Serving static files
 app.use(express.static(`/public`));
@@ -66,6 +66,6 @@ app.all('*', (req, res, next) => {
   next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
 });
 
-app.use(globalErrorHandler);
+// app.use(globalErrorHandler);
 
 export default app;

@@ -11,8 +11,8 @@ const commentSchema = new mongoose.Schema(
     },
     like: {
       type: Number,
-      min: 1,
-      max: 5
+      min: 0,
+      max: 1
     },
     createdAt: {
       type: Date,

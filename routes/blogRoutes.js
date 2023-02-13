@@ -27,12 +27,12 @@ router.route('/blog-stats').get(getBlogStats);
 router
   .route('/')
   .get(getAllBlogs)
-  .post(createBlog);
+  .post(protect, createBlog);
 
 router
   .route('/:id')
   .get(getBlog)
-  .patch(protect, restrictTo('admin', 'lead-guide'), updateBlog)
-  .delete(protect, restrictTo('admin', 'lead-guide'), deleteBlog);
+  .patch(protect, updateBlog)
+  .delete(protect, deleteBlog);
 
 export default router;
