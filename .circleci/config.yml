@@ -3,8 +3,10 @@ version: 2.4
 jobs:
   build:
     docker:
-      - image: node:18.13.0
-
+      - image: cimg/node:18.8.0
+    steps:
+      - checkout
+      - run: node --version
     working_directory: ~/mybrand
     steps:
       - checkout:
@@ -15,6 +17,8 @@ jobs:
       - run:
           name: Run tests
           command: npm test -- --verbose
-      - run:
-          name: Upload coverage to Coveralls
-          command: npx coveralls < coverage/lcov.info
+      # - run:
+      #     name: Upload coverage to Coveralls
+      #     command: npx coveralls < coverage/lcov.info
+
+
