@@ -21,7 +21,7 @@ describe('user API Test', () => {
   beforeAll(async () => {
     await mongoose
       .connect(
-        'mongodb+srv://bosco:etite@cluster0.0cffxhd.mongodb.net/?retryWrites=true&w=majority ',
+        'mongodb://bosco:etite@ac-gtollpd-shard-00-00.0cffxhd.mongodb.net:27017,ac-gtollpd-shard-00-01.0cffxhd.mongodb.net:27017,ac-gtollpd-shard-00-02.0cffxhd.mongodb.net:27017/?ssl=true&replicaSet=atlas-qf566a-shard-0&authSource=admin&retryWrites=true&w=majority',
         {
           useNewUrlParser: true,
           useCreateIndex: true,
