@@ -1,63 +1,30 @@
+preload.style.display = 'flex';
 
-   
-
-  // Convert cover photo input element
-  const blogForm = document.getElementById("blogForm");
-const blogCover = document.getElementById("blogCover");
-const saveButton = document.getElementById("saveButton");
-const blogTitle = document.getElementById("blogTitle");
-  const blogCategory = document.getElementById("blogCategory");
-  const blogDescription = document.getElementById("froala");
-  const date = new Date().toLocaleString();
- const blogsIndex = JSON.parse(localStorage.getItem("blogs"));
-  const nextIndex = blogsIndex.length;
+// Convert cover photo input element
+const blogForm = document.getElementById('blogForm');
+const blogCover = document.getElementById('blogCover');
+const saveButton = document.getElementById('saveButton');
+const blogTitle = document.getElementById('blogTitle');
+const blogCategory = document.getElementById('blogCategory');
+const blogDescription = document.getElementById('froala');
+const date = new Date().toLocaleString();
+const blogsIndex = JSON.parse(localStorage.getItem('blogs'));
+const nextIndex = blogsIndex?.length;
 console.log(nextIndex);
-saveButton.addEventListener("click", function(event){
-    event.preventDefault();
-
-const selectedFile = blogCover.files[0];
-    const reader = new FileReader();
-    reader.readAsDataURL(selectedFile);
-    reader.onload = () => {
-      let blogData = {
-    index: nextIndex,
-    title: blogTitle.value,
-    cover: reader.result,
-    category: blogCategory.value,
-    description: blogDescription.value,
-    author: "Jean Bosco Mugiraneza",
-    date: date,
-    link: `http://127.0.0.1:5501/blog.html/${blogs.length}`
-  }
-
-  let blogs;
-   if (JSON.parse(localStorage.getItem("blogs")) === null) {
-blogs = [];
-   } else {
-blogs = JSON.parse(localStorage.getItem("blogs"));
-   }
-  
-
-  blogs.push(blogData);
-
-  localStorage.setItem("blogs", JSON.stringify(blogs));
-
-  }
-});
-
-
-
 
 // Blogs In the Dashboards
 
-  let blogs = JSON.parse(localStorage.getItem("blogs")) || [];
-  if (blogs.length) {
-    let blogContainer = document.getElementById("blogs");
-    blogs.forEach(function(blog, index) {
-      let blogCard = document.createElement("div");
-      blogCard.innerHTML = `
+axios
+  .get('https://brand-q646.onrender.com/api/v1/blogs/')
+  .then((response) => {
+    let blogs = response.data.data.blogs;
+    if (blogs.length) {
+      let blogContainer = document.getElementById('blogs');
+      blogs.forEach(function (blog, index) {
+        let blogCard = document.createElement('div');
+        blogCard.innerHTML = `
       <div class = "blog-item">
-      <img src="${blog.cover}" class="blog-image" alt="Blog cover">
+      <img src="${blog.imageCover}" class="blog-image" alt="Blog cover">
         <h2>Blog #${index + 1}</h2>
         <h3 class="blog-title">${blog.title}</h3>
         <p>Category: ${blog.category}</p>
@@ -77,17 +44,59 @@ blogs = JSON.parse(localStorage.getItem("blogs"));
          
 </div>
       `;
-      blogContainer.appendChild(blogCard);
-    });
-  } else {
-    blogContainer.innerHTML = "No blogs found.";
+        blogContainer.appendChild(blogCard);
+      });
+    } else {
+      blogContainer.innerHTML = 'No blogs found.';
+    }
+    preload.style.display = 'none';
+  })
+  .catch((error) => {
+    preload.style.display = 'none';
+  });
+
+function publishBlog(index) {
+  // Add code here to publish the blog with the specified index
+}
+function removeBlog(index) {
+  let blogs = JSON.parse(localStorage.getItem('blogs'));
+  blogs.splice(index, 1);
+  localStorage.setItem('blogs', JSON.stringify(blogs));
+  location.reload();
+}
+
+// BLOG FILTER
+// Blog Filter Js
+filterSelection('all');
+function filterSelection(c) {
+  let x, i;
+  x = document.getElementsByClassName('filterDiv');
+  if (c == 'all') c = '';
+  for (i = 0; i < x.length; i++) {
+    w3RemoveClass(x[i], 'show');
+    if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], 'show');
   }
-  function publishBlog(index) {
-    // Add code here to publish the blog with the specified index
+}
+
+function w3AddClass(element, name) {
+  let i, arr1, arr2;
+  arr1 = element.className.split(' ');
+  arr2 = name.split(' ');
+  for (i = 0; i < arr2.length; i++) {
+    if (arr1.indexOf(arr2[i]) == -1) {
+      element.className += ' ' + arr2[i];
+    }
   }
-  function removeBlog(index) {
-    let blogs = JSON.parse(localStorage.getItem("blogs"));
-    blogs.splice(index, 1);
-    localStorage.setItem("blogs", JSON.stringify(blogs));
-    location.reload();
+}
+
+function w3RemoveClass(element, name) {
+  let i, arr1, arr2;
+  arr1 = element.className.split(' ');
+  arr2 = name.split(' ');
+  for (i = 0; i < arr2.length; i++) {
+    while (arr1.indexOf(arr2[i]) > -1) {
+      arr1.splice(arr1.indexOf(arr2[i]), 1);
+    }
   }
+  element.className = arr1.join(' ');
+}

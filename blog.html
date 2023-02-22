@@ -10,7 +10,9 @@
 </head>
 
 <body class="my-brand">
-
+    <div class="preload">
+        <div class="spinner"></div>
+    </div>
     <header>
         <!-- Mobile Menu -->
         <div id="mobileMenu" class="menu-mobile">
@@ -184,28 +186,14 @@
                 </div>
             </section>
 
+            <!-- <section>
+                <div class="blog" id="blogs"></div>
+            </section> -->
             <section>
-                <div class="blog" id="blogsList"></div>
-            </section>
-            <section>
-                <ul class="blog">
-                    <li class="relative filterDiv design">
-                        <div class="blog-item">
-                            <a href="/article.html">
-                                <img src="/images/musicapp.jpg" alt="" class="blog-image">
-                                <p class="blog-title">Music is the universal language of mankind.</p>
-                            </a>
-                            <span class="blog-icons">
-                                <img class="blog-icon" src="/icons/like.svg" alt="">
-                                <img class="blog-icon" src="/icons/comment.svg" alt="">
-                                <img class="blog-icon" src="/icons/share.svg" alt="">
-                            </span>
+                <ul class="blog" id="blogs">
 
-                        </div>
 
-                    </li>
 
-                    <!-- More images... -->
                 </ul>
             </section>
             <div class="prev-next">
@@ -243,40 +231,14 @@
         </aside>
     </main>
 
-    <script>
-        // My Blogs 
-
-        let myblogs = JSON.parse(localStorage.getItem("blogs"));
-        if (myblogs) {
-            let blogContainer = document.getElementById("blogsList");
-            myblogs.forEach(function (blog) {
-                let blogCard = document.createElement("div");
-                blogCard.innerHTML = `
-                <div class = "blog-item">
-                    <img src="${blog.cover}" class="blog-image" alt="Blog cover">
-                    <h2 class="blog-title">${blog.title}</h2>
-            <p>Category: ${blog.category}</p>
-            
-            
-                         <button class = "view-button btn btn--primary btn--outline" onclick="window.location.href='article.html'">Read more</button>
-
-      
-         
-</div>
-            
-          `;
-                blogContainer.appendChild(blogCard);
-            });
-        } else {
-            blogContainer.innerHTML = "No blogs found.";
-        }
-
-    </script>
 
 
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.3/axios.min.js"
+        integrity="sha512-wS6VWtjvRcylhyoArkahZUkzZFeKB7ch/MHukprGSh1XIidNvHG1rxPhyFnL73M0FC1YXPIXLRDAoOyRJNni/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="js/main.js"></script>
-    <script src="js/blogs.js"></script>
+    <script src="js/public-blog.js"></script>
 
     <script>
         (function (w, d, s, u) {
